@@ -24,5 +24,6 @@ cd server
 npm start
 
 # start frontend
+cd ../client
 npm serve
 ```
