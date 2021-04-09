@@ -21,9 +21,9 @@ npm i
 ```bash
 # start backend
 cd server
-npm start
+npm run start
 
 # start frontend
 cd ../client
-npm serve
+npm run serve
 ```
