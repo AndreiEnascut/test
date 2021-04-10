@@ -4,15 +4,15 @@
       <PhoneList :phones='phones'></PhoneList>
     </div>
     <div v-else>
-      No phones in the DB!
+      <p>No phones in the DB!</p>
     </div>
-    
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import PhoneList from '@/components/PhoneList.vue';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import PhoneList from '../components/PhoneList.vue';
+import PhoneService from '../services/PhoneService';
 import { Phone } from '../types'
 
 @Component({
@@ -21,12 +21,17 @@ import { Phone } from '../types'
   },
 })
 export default class Home extends Vue {
-  url = 'http://localhost:3000/api/phone';
   phones: Phone[] = [];
+  phoneService = new PhoneService();
 
-  public async mounted() {
-    const phoneListPromise = await fetch(this.url);
-    this.phones = await phoneListPromise.json();
+  public mounted(): void {
+    this.fetchData();
+  }
+
+  @Watch('$route')
+  async fetchData(): Promise<void> {
+    const response = await this.phoneService.findAll();
+    this.phones = response.data;
   }
 
 }
