@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PhoneForm :phone="phone" @phonechanged="phonechanged" @phonedeleted="phonedeleted"></PhoneForm>
+    <PhoneForm :phone="phone" @phonesaved="saved" @phonedeleted="deleted"></PhoneForm>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default class Editor extends Vue {
     }
   }
 
-  async phonechanged(phone: Phone): void {
+  async saved(phone: Phone): void {
     if (this.$route.params.id) {
       await this.phoneService.update({id: this.$route.params.id, ...phone});
     } else {
@@ -41,7 +41,7 @@ export default class Editor extends Vue {
     this.$router.push({name: 'home'});
   }
 
-  async phonedeleted(): Promise<void> {
+  async deleted(): Promise<void> {
     await this.phoneService.remove(this.$route.params.id);
     this.$router.push({name: 'home'});
   }

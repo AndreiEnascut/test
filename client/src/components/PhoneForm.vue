@@ -1,11 +1,11 @@
 <template>
   <div>
-    <input v-model="phone.type" placeholder="type" />
-    <input v-model="phone.serial" placeholder="serial" />
-    <input v-model="phone.color" placeholder="color" />
-    <input v-model="phone.meta" placeholder="meta" />
-    <button v-on:click="$emit('phonedeleted', phone)">Delete</button>
-    <button v-on:click="$emit('phonechanged', phone)">Save</button>
+    <input name="type" v-model="phone.type" placeholder="type" />
+    <input name="serial" v-model="phone.serial" placeholder="serial" />
+    <input name="color" v-model="phone.color" placeholder="color" />
+    <input name="meta" v-model="phone.meta" placeholder="meta" />
+    <button id="delete" v-on:click="$emit('phonedeleted', phone)">Delete</button>
+    <button id="save" v-on:click="$emit('phonesaved', phone)">Save</button>
   </div>
 </template>
 

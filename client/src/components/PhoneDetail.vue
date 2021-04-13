@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="grid-container">
+    <div class="grid-container" v-if="phone && phone.id">
       <div class="grid-item">
         {{ phone.id }}
       </div>
